@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc>  
+	<package>  
+		<action name="login" method="logon"  
+			class="edu.cqut.action.LoginAction">  
+			<result name="success">/index.jsp</result>
+			<result name="login">/login.jsp</result>  
+		</action>  
+	</package>  
+</mvc>  
