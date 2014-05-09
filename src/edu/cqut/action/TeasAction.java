@@ -1,5 +1,6 @@
 package edu.cqut.action;
 
-public class LoginAction {
+
+public class TeasAction {
 
 }
