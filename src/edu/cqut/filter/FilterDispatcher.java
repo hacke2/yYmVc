@@ -49,7 +49,7 @@ public class FilterDispatcher implements Filter {
  
        // 如果后缀不为.action,不需要该核心Filter控制，直接过关
  
-       if (!url.endsWith(PropertiesUtil.readValue("action-suffix"))) {
+       if (!url.endsWith(PropertiesUtil.getValue("action-suffix"))) {
            chain.doFilter(request, response);
            return;
        }

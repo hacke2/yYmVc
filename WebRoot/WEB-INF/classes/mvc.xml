@@ -5,6 +5,10 @@
 			class="edu.cqut.action.UserAction">  
 			<result name="success">/success.jsp</result>
 			<result name="failed">/failed.jsp</result>  
-		</action>  
+		</action> 
+		<action name="logon" method="logon"  
+			class="edu.cqut.action.UserAction">  
+			<result name="success">/logon.jsp</result>
+		</action> 
 	</package>  
 </mvc>  

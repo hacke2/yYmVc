@@ -8,6 +8,8 @@ public class UserAction extends ActionSupport {
 	
 	private String userName;
 	private String password;
+	
+	private String result;
 	@Override
 	public String execute() {
 		return SUCCESS;
@@ -23,7 +25,7 @@ public class UserAction extends ActionSupport {
 	}
 	
 	public String logon() {
-		System.out.println("销毁session");
+		result = "我是返回结果----退出成功";
 		return SUCCESS;
 	}
 	
@@ -38,6 +40,14 @@ public class UserAction extends ActionSupport {
 	}
 	public String getPassword() {
 		return password;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public String getResult() {
+		return result;
 	}
 
 }

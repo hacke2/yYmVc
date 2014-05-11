@@ -5,31 +5,40 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class PropertiesUtil
 {
 	private static final String filePath = PropertiesUtil.class.getClassLoader().getResource("webConfig.properties").getFile();
 	private static long curModifiedTime;
+	private static Map<String, String> propertiesMap;
 	static {
 		try {
 			curModifiedTime = new File(filePath).lastModified();
-			System.out.println("当前文件修改时间为 " +curModifiedTime);
+			
+			//初始化
+			propertiesMap = new HashMap<String, String>();
+			Properties props = new Properties();
+			InputStream in = new BufferedInputStream(new FileInputStream(filePath));
+      props.load(in);
+      for(Object t:props.keySet()){
+      	propertiesMap.put(t.toString(), props.getProperty(t.toString()));
+  		} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
 	}
 
 	
-  public static String readValue(String filePath, String key)
+  public static String getRealValue(String filePath, String key)
   {
     Properties props = new Properties();
     try {
       InputStream in = new BufferedInputStream(new FileInputStream(filePath));
       props.load(in);
       String value = props.getProperty(key);
-      System.out.println(key + "=" + value);
       return value;
     } catch (Exception e) {
       e.printStackTrace();
@@ -37,14 +46,13 @@ public class PropertiesUtil
   }
   
   //默认读取webConfig.properties下的值
-  public static String readValue(String key)
+  public static String getRealValue(String key)
   {
     Properties props = new Properties();
     try {
       InputStream in = new BufferedInputStream(new FileInputStream(filePath));
       props.load(in);
       String value = props.getProperty(key);
-      System.out.println(key + "=" + value);
       return value;
     } catch (Exception e) {
       e.printStackTrace();
@@ -68,5 +76,13 @@ public class PropertiesUtil
   		flag = true;
   	}
   	return flag;
+  }
+  
+  public static String getValue(String key) {
+  	if(propertiesMap.containsKey(key)) {
+  		return propertiesMap.get(key);
+  	} else {
+  		return null;
+  	}
   }
 }
